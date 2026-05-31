@@ -21,11 +21,11 @@
 
 | Слој             | Технологија                  |
 |------------------|------------------------------|
-| Фронтенд         | Angular 17, TypeScript       |
-| Бекенд           | Node.js, Express.js          |
+| Front-end         | Angular 17, TypeScript       |
+| Back-end           | Node.js, Express.js          |
 | База на податоци | MongoDB, Mongoose            |
 | Автентикација    | JWT, bcryptjs                |
-| Девопс           | Docker, Docker Compose       |
+| DevOps           | Docker, Docker Compose       |
 
 ## Структура на проектот
 
@@ -49,5 +49,5 @@ docker-compose up --build
 
 | Сервис | Локална адреса (Docker) |
 |--------|------------------------|
-| Фронтенд (Angular) | http://localhost:4200 |
-| Бекенд API | http://localhost:5000 |
+| Front-end (Angular) | http://localhost:4200 |
+| Back-end API (Node) | http://localhost:5000 |
