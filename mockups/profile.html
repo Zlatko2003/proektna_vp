@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - DevQ&A</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">DevQ&A</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="questions.html">Questions</a>
+                <a href="ask-question.html">Ask Question</a>
+                <a href="profile.html">Profile</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-page">
+        <div class="container">
+            <div class="profile-hero">
+                <div class="profile-badge">👤 Your Profile</div>
+                <h1>Welcome, <span>John Doe</span></h1>
+                <p class="hero-description">Manage your questions and track your activity on DevQ&A.</p>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <div class="avatar-large">J</div>
+                    <div class="badge">Member</div>
+                </div>
+                <div class="profile-info">
+                    <h2>John Doe</h2>
+                    <p class="email">john.doe@example.com</p>
+                    <p class="joined">Member since January 15, 2024</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Questions Asked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Answers Given</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value">45</div>
+                    <div class="stat-label">Total Votes</div>
+                </div>
+            </div>
+
+            <div class="questions-section">
+                <div class="section-header">
+                    <h3>📝 My Questions</h3>
+                    <a href="ask-question.html" class="ask-link">+ Ask New Question</a>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-stats">
+                        <div class="stat">
+                            <span class="stat-value">15</span>
+                            <span class="stat-label">views</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">answers</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        <h3><a href="question-detail.html">How to use useState in React?</a></h3>
+                        <p class="question-excerpt">I am learning React and I want to understand how useState hook works. Can someone explain with examples?</p>
+                        <div class="question-meta">
+                            <div class="tags">
+                                <span class="tag">#react</span>
+                                <span class="tag">#hooks</span>
+                            </div>
+                            <div class="date">Asked on Jan 15, 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-stats">
+                        <div class="stat">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">views</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">answers</span>
+                        </div>
+                    </div>
+                    <div class="question-content">
+                        <h3><a href="question-detail.html">What is the best way to learn TypeScript?</a></h3>
+                        <p class="question-excerpt">I want to learn TypeScript for my Angular projects. What resources would you recommend?</p>
+                        <div class="question-meta">
+                            <div class="tags">
+                                <span class="tag">#typescript</span>
+                                <span class="tag">#angular</span>
+                            </div>
+                            <div class="date">Asked on Jan 20, 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⌨️</span>
+                    <span>DevQ&A</span>
+                    <p>Where developers find answers</p>
+                </div>
+                <div class="footer-links">
+                    <a href="questions.html">Questions</a>
+                    <a href="ask-question.html">Ask</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 DevQ&A. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

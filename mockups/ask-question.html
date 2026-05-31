@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Question - DevQ&A</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">DevQ&A</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="questions.html">Questions</a>
+                <a href="ask-question.html">Ask Question</a>
+                <a href="profile.html">Profile</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ask-page">
+        <div class="container">
+            <div class="ask-hero">
+                <div class="ask-badge">✍️ Share Knowledge</div>
+                <h1>Ask a <span>Question</span></h1>
+                <p class="hero-description">Get answers from experienced developers. Be specific and provide details.</p>
+            </div>
+
+            <div class="ask-card">
+                <div class="alert alert-error" style="display: none;">
+                    <span>⚠️ Please fix the errors above before posting</span>
+                    <button class="close-btn">×</button>
+                </div>
+                <form id="askForm">
+                    <div class="form-group" id="titleGroup">
+                        <label>Title</label>
+                        <div class="hint">Be specific and imagine you're asking a question to another person</div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📌</span>
+                            <input type="text" id="title" placeholder="e.g., How do I use useState in React?">
+                        </div>
+                        <div class="error-message" id="titleError" style="display: none;"></div>
+                        <div class="char-counter" id="titleCounter">0 / 200 characters</div>
+                    </div>
+
+                    <div class="form-group" id="contentGroup">
+                        <label>Content</label>
+                        <div class="hint">Provide details about your question. Include what you've tried and what you expect</div>
+                        <textarea id="content" rows="8" placeholder="Write your question in detail..."></textarea>
+                        <div class="error-message" id="contentError" style="display: none;"></div>
+                        <div class="char-counter" id="contentCounter">0 / 5000 characters</div>
+                    </div>
+
+                    <div class="form-group" id="tagsGroup">
+                        <label>Tags</label>
+                        <div class="hint">Add up to 5 tags to help others find your question</div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏷️</span>
+                            <input type="text" id="tags" placeholder="e.g., react, javascript, nodejs (comma separated)">
+                        </div>
+                        <div class="error-message" id="tagsError" style="display: none;"></div>
+                        <div class="tag-preview" id="tagPreview"></div>
+                    </div>
+                    <div class="form-actions" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--gray-lighter);">
+                        <button type="button" class="cancel-btn" onclick="window.location.href='questions.html'">Cancel</button>
+                        <button type="submit" class="submit-btn" style="width: auto; padding: 16px 28px; margin: 0;">Post Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⌨️</span>
+                    <span>DevQ&A</span>
+                    <p>Where developers find answers</p>
+                </div>
+                <div class="footer-links">
+                    <a href="questions.html">Questions</a>
+                    <a href="ask-question.html">Ask</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 DevQ&A. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions - DevQ&A</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">DevQ&A</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="questions.html">Questions</a>
+                <a href="ask-question.html">Ask Question</a>
+                <a href="profile.html">Profile</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="questions-page">
+        <div class="container">
+            <div class="page-header">
+                <a href="ask-question.html" class="btn-primary ask_question_plus">+ Ask Question</a>
+            </div>
+
+            <div class="search-hero">
+                <div class="hero-badge">💡 Community Knowledge Base</div>
+                <h1>What can we help you <span>discover today?</span></h1>
+                <p class="hero-description">Search through thousands of questions, answers and discussions from the community.</p>
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search questions, topics, tags..." class="search-input" id="searchInput" style="padding: 10px 12px 10px 10px; border: none;">
+                        <button class="search-btn" id="searchBtn">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="questionsList">
+                <div class="col-12 col-md-6">
+                    <div class="question-card" data-tags="react hooks">
+                        <div class="question-stats">
+                            <div class="stat">
+                                <span class="stat-value">15</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">answers</span>
+                            </div>
+                        </div>
+                        <div class="question-content">
+                            <h3><a href="question-detail.html">How to use useState in React?</a></h3>
+                            <p class="question-excerpt">I am learning React and I want to understand how useState hook works. Can someone explain with examples?</p>
+                            <div class="question-meta">
+                                <div class="tags">
+                                    <span class="tag">#react</span>
+                                    <span class="tag">#hooks</span>
+                                </div>
+                                <div class="author-info">
+                                    <span class="author-avatar">J</span>
+                                    <span class="author-name">John Doe</span>
+                                    <span class="post-date">Jan 15, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="question-card" data-tags="express nodejs">
+                        <div class="question-stats">
+                            <div class="stat">
+                                <span class="stat-value">25</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">answers</span>
+                            </div>
+                        </div>
+                        <div class="question-content">
+                            <h3><a href="question-detail.html">What is middleware in Express?</a></h3>
+                            <p class="question-excerpt">I see middleware being used in Express.js but I dont fully understand the concept. Can you explain?</p>
+                            <div class="question-meta">
+                                <div class="tags">
+                                    <span class="tag">#express</span>
+                                    <span class="tag">#nodejs</span>
+                                </div>
+                                <div class="author-info">
+                                    <span class="author-avatar">J</span>
+                                    <span class="author-name">Jane Smith</span>
+                                    <span class="post-date">Jan 20, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="btn-outline">← Previous</button>
+                <span class="page-info">Page 1 of 3</span>
+                <button class="btn-outline">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⌨️</span>
+                    <span>DevQ&A</span>
+                    <p>Where developers find answers</p>
+                </div>
+                <div class="footer-links">
+                    <a href="questions.html">Questions</a>
+                    <a href="ask-question.html">Ask</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 DevQ&A. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

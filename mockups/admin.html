@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DevQ&A</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">DevQ&A</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="questions.html">Questions</a>
+                <a href="ask-question.html">Ask Question</a>
+                <a href="profile.html">Profile</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-page">
+        <div class="container">
+            <div class="admin-hero">
+                <div class="admin-badge">🛡️ Administration</div>
+                <h1>Admin <span>Dashboard</span></h1>
+                <p class="hero-description">Manage your DevQ&A platform, monitor activity, and control database operations.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-value">67</div>
+                    <div class="stat-label">Total Answers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value">142</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏷️</div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Total Tags</div>
+                </div>
+            </div>
+
+            <div class="actions-card">
+                <div class="actions-header">
+                    <h3>🗄️ Database Management</h3>
+                    <p>Control your database with these operations</p>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-success" onclick="alert('Database seeded!')">🌱 Seed Database</button>
+                    <button class="btn btn-danger" onclick="if(confirm('WARNING: This will delete ALL data! Continue?')) alert('Database cleared!')">🗑️ Clear Database</button>
+                </div>
+                <p class="warning">⚠️ Seeding will add sample data. Clearing will delete ALL data.</p>
+            </div>
+
+            <div class="chart-section">
+                <h3>📊 Questions by User</h3>
+                <div class="chart-placeholder">
+                    <i class="fas fa-chart-bar"></i> Chart will appear here
+                </div>
+            </div>
+
+            <div class="manage-section">
+                <div class="section-header">
+                    <h3>📋 Manage Questions</h3>
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search questions..." class="search-input" id="adminSearch">
+                    </div>
+                </div>
+
+                <div class="questions-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>Title</th><th>Author</th><th>Created</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <tr>
+                                <td data-label="Title"><a href="question-detail.html" class="question-link">How to use useState in React?</a></td>
+                                <td data-label="Author">John Doe</td>
+                                <td data-label="Created">Jan 15, 2024</td>
+                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Title"><a href="question-detail.html" class="question-link">What is middleware in Express?</a></td>
+                                <td data-label="Author">Jane Smith</td>
+                                <td data-label="Created">Jan 20, 2024</td>
+                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Title"><a href="question-detail.html" class="question-link">Angular vs React: Which one to choose?</a></td>
+                                <td data-label="Author">Mike Johnson</td>
+                                <td data-label="Created">Jan 25, 2024</td>
+                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Title"><a href="question-detail.html" class="question-link">How to connect MongoDB with Node.js?</a></td>
+                                <td data-label="Author">Sarah Wilson</td>
+                                <td data-label="Created">Feb 1, 2024</td>
+                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⌨️</span>
+                    <span>DevQ&A</span>
+                    <p>Where developers find answers</p>
+                </div>
+                <div class="footer-links">
+                    <a href="questions.html">Questions</a>
+                    <a href="ask-question.html">Ask</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 DevQ&A. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Detail - DevQ&A</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">DevQ&A</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="questions.html">Questions</a>
+                <a href="ask-question.html">Ask Question</a>
+                <a href="profile.html">Profile</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="detail-page">
+        <div class="container">
+            <a href="questions.html" class="back-link">← Back to Questions</a>
+
+            <div class="question-detail card">
+                <div class="question-badge">📌 Question</div>
+                <h1>How to use useState in React?</h1>
+                <div class="question-meta-info">
+                    <div class="meta-item">👤 Asked by <strong>John Doe</strong></div>
+                    <div class="meta-item">📅 Jan 15, 2024</div>
+                    <div class="meta-item">👁️ 15 views</div>
+                </div>
+                <div class="content">I am learning React and I want to understand how useState hook works. Can someone explain with examples? I've tried reading the docs but I'm still confused about the syntax and when to use it.</div>
+                <div class="tags">
+                    <span class="tag">#react</span>
+                    <span class="tag">#hooks</span>
+                    <span class="tag">#javascript</span>
+                </div>
+            </div>
+
+            <div class="github-section">
+                <div class="github-header">
+                    <span>📦</span>
+                    <h3>Related GitHub Repositories</h3>
+                </div>
+                <div class="repo-list">
+                    <div class="repo-card">
+                        <a href="#" class="repo-name">facebook/react</a>
+                        <p class="repo-description">A declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
+                        <div class="repo-stats">
+                            <span>⭐ 215k</span>
+                            <span>🍴 45k</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <a href="#" class="repo-name">reactjs/reactjs.org</a>
+                        <p class="repo-description">The React documentation website.</p>
+                        <div class="repo-stats">
+                            <span>⭐ 10k</span>
+                            <span>🍴 8k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>3 Answers</h3>
+
+            <div class="answer-card">
+                <div class="answer-voting">
+                    <button class="vote-btn">▲</button>
+                    <span class="vote-count">5</span>
+                    <button class="vote-btn">▼</button>
+                </div>
+                <div class="answer-content">
+                    <div class="answer-text">useState is a Hook that lets you add React state to function components. Here's an example: <code>const [count, setCount] = useState(0);</code> When you call setCount with a new value, React re-renders the component with that new value.</div>
+                    <div class="answer-footer">
+                        <div class="answer-author">
+                            <span class="author-avatar">J</span>
+                            <span class="author-name">Jane Smith</span>
+                            <span class="answer-date">answered Jan 16, 2024</span>
+                        </div>
+                        <button class="accept-btn">✓ Accept Answer</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="answer-card accepted">
+                <div class="answer-voting">
+                    <button class="vote-btn">▲</button>
+                    <span class="vote-count">8</span>
+                    <button class="vote-btn">▼</button>
+                </div>
+                <div class="answer-content">
+                    <div class="answer-text">You can also use useState with objects: <code>const [user, setUser] = useState({name: '', age: 0});</code> When updating state that depends on previous state, use the functional update: <code>setCount(prev => prev + 1);</code></div>
+                    <div class="answer-footer">
+                        <div class="answer-author">
+                            <span class="author-avatar">B</span>
+                            <span class="author-name">Bob Wilson</span>
+                            <span class="answer-date">answered Jan 17, 2024</span>
+                        </div>
+                        <span class="accepted-badge">✓ Accepted Answer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="answer-card">
+                <div class="answer-voting">
+                    <button class="vote-btn">▲</button>
+                    <span class="vote-count">2</span>
+                    <button class="vote-btn">▼</button>
+                </div>
+                <div class="answer-content">
+                    <div class="answer-text">One important thing to remember: Hooks can only be called at the top level of your component. Don't call them inside loops, conditions, or nested functions. Also, only call Hooks from React function components.</div>
+                    <div class="answer-footer">
+                        <div class="answer-author">
+                            <span class="author-avatar">A</span>
+                            <span class="author-name">Alice Brown</span>
+                            <span class="answer-date">answered Jan 18, 2024</span>
+                        </div>
+                        <button class="accept-btn">✓ Accept Answer</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="your-answer">
+                <h3>Your Answer</h3>
+                <textarea rows="6" placeholder="Write your answer here..."></textarea>
+                <button class="submit-btn">Post Answer</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⌨️</span>
+                    <span>DevQ&A</span>
+                    <p>Where developers find answers</p>
+                </div>
+                <div class="footer-links">
+                    <a href="questions.html">Questions</a>
+                    <a href="ask-question.html">Ask</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 DevQ&A. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
