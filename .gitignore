@@ -1,0 +1,4 @@
+.env
+.angular/*
+
+node_modules/*
