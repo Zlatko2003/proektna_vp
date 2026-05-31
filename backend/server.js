@@ -25,11 +25,38 @@ app.use('/db', require('./routes/dbRoutes'));
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
-        info: { title: 'DevQ&A API', version: '1.0.0' },
-        servers: [{ url: 'http://localhost:5000' }]
+        info: {
+            title: 'DevQ&A API',
+            version: '1.0.0',
+            description: 'REST API for DevQ&A platform - questions, answers, comments, authentication',
+            contact: {
+                name: 'DevQ&A Support'
+            }
+        },
+        servers: [
+            {
+                url: 'http://localhost:5000',
+                description: 'Development server'
+            }
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT'
+                }
+            }
+        },
+        security: [
+            {
+                bearerAuth: []
+            }
+        ]
     },
     apis: ['./routes/*.js']
 };
+
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get('/api/swagger.json', (req, res) => res.json(swaggerSpec));

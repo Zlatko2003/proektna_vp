@@ -51,7 +51,6 @@ import { Question } from '../../models/question.model';
         .question-card:hover {
             transform: translateX(4px);
             background: var(--gray-lighter);
-            // box-shadow: var(--shadow);
             cursor: pointer;
         }
         
