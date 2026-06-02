@@ -7,7 +7,7 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-RUN npm run build --configuration qa-frontend
+RUN npm run build --configuration production
 
 FROM nginx:alpine
 
