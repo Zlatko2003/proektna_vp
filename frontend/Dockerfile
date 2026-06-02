@@ -1,4 +1,5 @@
-FROM node:18-alpine
+# Build stage
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
@@ -7,6 +8,13 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-EXPOSE 4200
+RUN npm run build
 
-CMD ["npm", "start"]
+# Production stage
+FROM nginx:alpine
+
+COPY --from=build /app/dist/qa-frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

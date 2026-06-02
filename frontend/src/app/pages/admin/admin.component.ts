@@ -3,6 +3,8 @@ import { QuestionService } from '../../services/question.service';
 import { AuthService } from '../../services/auth.service';
 import { Question } from '../../models/question.model';
 
+import { environment } from '../../../environments/environment';
+
 @Component({
     selector: 'app-admin',
     template: `
@@ -564,7 +566,7 @@ export class AdminComponent implements OnInit {
             this.isSeeding = true;
             this.errorMessage = null;
             
-            fetch('http://localhost:5000/db/seed', {
+            fetch(`${environment.apiUrl}/db/seed`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${this.authService.getToken()}` }
             }).then(response => {
@@ -587,7 +589,7 @@ export class AdminComponent implements OnInit {
             this.isClearing = true;
             this.errorMessage = null;
             
-            fetch('http://localhost:5000/db/clear', {
+            fetch(`${environment.apiUrl}/db/clear`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${this.authService.getToken()}` }
             }).then(response => {

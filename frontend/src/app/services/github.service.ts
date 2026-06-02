@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({ providedIn: 'root' })
 export class GithubService {
-    private apiUrl = 'http://localhost:5000/api/github';
+    private apiUrl = `${environment.apiUrl}/api/github`;
 
     constructor(private http: HttpClient) { }
 

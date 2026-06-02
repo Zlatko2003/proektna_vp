@@ -4,9 +4,11 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from '../models/user.model';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private apiUrl = 'http://localhost:5000/api/auth';
+    private apiUrl = `${environment.apiUrl}/api/auth`;
     private tokenKey = 'token';
     private userSubject = new BehaviorSubject<User | null>(null);
     user$ = this.userSubject.asObservable();

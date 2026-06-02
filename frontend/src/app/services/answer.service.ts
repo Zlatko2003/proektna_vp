@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Answer } from '../models/answer.model';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({ providedIn: 'root' })
 export class AnswerService {
-    private apiUrl = 'http://localhost:5000/api/answers';
+    private apiUrl = `${environment.apiUrl}/api/answers`;
 
     constructor(private http: HttpClient) { }
 

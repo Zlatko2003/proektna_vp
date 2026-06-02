@@ -4,9 +4,11 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Question } from '../models/question.model';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({ providedIn: 'root' })
 export class QuestionService {
-    private apiUrl = 'http://localhost:5000/api/questions';
+    private apiUrl = `${environment.apiUrl}/api/questions`;
     private errorSubject = new BehaviorSubject<string | null>(null);
     error$ = this.errorSubject.asObservable();
 
