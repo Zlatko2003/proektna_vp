@@ -47,7 +47,7 @@ docker-compose up --build
 
 ## Достапност на апликацијата
 
-| Сервис | Локална адреса (Docker) |
-|--------|------------------------|
-| Front-end (Angular) | http://localhost:4200 |
-| Back-end API (Node) | http://localhost:5000 |
+| Сервис | Локална адреса (Docker) | URL адреса |
+|--------|-------------------------|------------------------|
+| Front-end (Angular) | http://localhost:4200 | https://vp-proektna.onrender.com |
+| Back-end API (Node) | http://localhost:5000 | https://proektna-vp.onrender.com |
