@@ -28,21 +28,52 @@
 
     <div class="questions-page">
         <div class="container">
-            <div class="page-header">
-                <a href="ask-question.html" class="btn-primary ask_question_plus">+ Ask Question</a>
-            </div>
-
             <div class="search-hero">
-                <div class="hero-badge">💡 Community Knowledge Base</div>
-                <h1>What can we help you <span>discover today?</span></h1>
-                <p class="hero-description">Search through thousands of questions, answers and discussions from the community.</p>
-                <div class="search-bar">
-                    <div class="search-input-wrapper">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" placeholder="Search questions, topics, tags..." class="search-input" id="searchInput" style="padding: 10px 12px 10px 10px; border: none;">
-                        <button class="search-btn" id="searchBtn">Search</button>
+                <div class="search-content">
+                    <div class="hero-badge">💡 Community Knowledge Base</div>
+                    <h1>What can we help you <span>discover today?</span></h1>
+                    <p class="hero-description">Search through thousands of questions, answers and discussions from the community.</p>
+
+                    <div class="ask-section">
+                        <div class="ask-container">
+                            <div class="ask-content">
+                                <a href="ask-question.html" class="btn ask-btn">
+                                    <span class="btn-content">
+                                        <span class="btn-icon">🚀</span>
+                                        <span class="btn-text">Ask the Community</span>
+                                        <span class="btn-plus">+</span>
+                                    </span>
+                                    <span class="btn-particle"></span>
+                                    <span class="btn-particle"></span>
+                                    <span class="btn-particle"></span>
+                                    <span class="btn-particle"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider-section">
+                        <div class="divider-line"></div>
+                        <span class="divider-text">OR</span>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-bar">
+                            <div class="search-input-wrapper">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" placeholder="Search questions, topics, tags..." class="search-input" id="searchInput">
+                                <button class="search-btn" id="searchBtn"><span class="search-icon-btn">🔍</span> Search</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="active-filters" style="display:none">
+                <span class="filter-label">🔍 Active filters:</span>
+                <span class="filter-badge">#react <span class="filter-remove">✕</span></span>
+                <button class="clear-all-btn">Clear all</button>
             </div>
 
             <div class="row" id="questionsList">
@@ -99,6 +130,64 @@
                                     <span class="author-avatar">J</span>
                                     <span class="author-name">Jane Smith</span>
                                     <span class="post-date">Jan 20, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="question-card" data-tags="react angular">
+                        <div class="question-stats">
+                            <div class="stat">
+                                <span class="stat-value">42</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">8</span>
+                                <span class="stat-label">answers</span>
+                            </div>
+                        </div>
+                        <div class="question-content">
+                            <h3><a href="question-detail.html">Angular vs React: Which one to choose?</a></h3>
+                            <p class="question-excerpt">Im starting a new project and Im confused between Angular and React. What are the pros and cons of each?</p>
+                            <div class="question-meta">
+                                <div class="tags">
+                                    <span class="tag">#angular</span>
+                                    <span class="tag">#react</span>
+                                </div>
+                                <div class="author-info">
+                                    <span class="author-avatar">M</span>
+                                    <span class="author-name">Mike Johnson</span>
+                                    <span class="post-date">Jan 25, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="question-card" data-tags="mongodb nodejs">
+                        <div class="question-stats">
+                            <div class="stat">
+                                <span class="stat-value">31</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">4</span>
+                                <span class="stat-label">answers</span>
+                            </div>
+                        </div>
+                        <div class="question-content">
+                            <h3><a href="question-detail.html">How to connect MongoDB with Node.js?</a></h3>
+                            <p class="question-excerpt">I am building a Node.js application and I need to connect to MongoDB. What are the best practices?</p>
+                            <div class="question-meta">
+                                <div class="tags">
+                                    <span class="tag">#mongodb</span>
+                                    <span class="tag">#nodejs</span>
+                                </div>
+                                <div class="author-info">
+                                    <span class="author-avatar">S</span>
+                                    <span class="author-name">Sarah Wilson</span>
+                                    <span class="post-date">Feb 1, 2024</span>
                                 </div>
                             </div>
                         </div>

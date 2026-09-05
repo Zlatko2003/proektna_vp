@@ -93,4 +93,8 @@ export class AuthService {
     clearError(): void {
         this.errorSubject.next(null);
     }
+
+    updateProfile(data: any): Observable<User> {
+        return this.http.put<User>(`${this.apiUrl}/auth/profile`, data);
+    }
 }

@@ -18,7 +18,6 @@ import { Answer } from '../../models/answer.model';
                 </div>
 
                 <div class="two-column-layout">
-                    <!-- Left Column: Question + Answers (col-8) -->
                     <div class="main-content">
                         <div class="question-card">
                             <div class="question-badge">
@@ -122,11 +121,9 @@ import { Answer } from '../../models/answer.model';
                         </div>
                     </div>
 
-                    <!-- Right Column: GitHub Repos (col-4) -->
                     <div class="sidebar-content">
                         <app-github-repos [tag]="question.tags[0]"></app-github-repos>
                         
-                        <!-- Optional: Additional sidebar content -->
                         <div class="info-card">
                             <div class="info-header">
                                 <span>ℹ️</span>
@@ -487,7 +484,6 @@ import { Answer } from '../../models/answer.model';
                 font-weight: 600;
             }
             
-            /* Info Card for Sidebar */
             .info-card {
                 background: white;
                 border-radius: 20px;

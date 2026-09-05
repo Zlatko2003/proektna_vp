@@ -29,95 +29,210 @@
     <div class="admin-page">
         <div class="container">
             <div class="admin-hero">
-                <div class="admin-badge">🛡️ Administration</div>
-                <h1>Admin <span>Dashboard</span></h1>
-                <p class="hero-description">Manage your DevQ&A platform, monitor activity, and control database operations.</p>
+                <div class="admin-badge">🛡️ Admin Panel</div>
+                <h1>Dashboard</h1>
+                <p class="hero-description">Manage your platform, monitor activity, and control database operations.</p>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">📝</div>
-                    <div class="stat-value">24</div>
-                    <div class="stat-label">Total Questions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💬</div>
-                    <div class="stat-value">67</div>
-                    <div class="stat-label">Total Answers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-value">142</div>
-                    <div class="stat-label">Total Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🏷️</div>
-                    <div class="stat-value">18</div>
-                    <div class="stat-label">Total Tags</div>
-                </div>
-            </div>
+            <div class="two-column-layout">
+                <div class="col-6">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📝</div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Questions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💬</div>
+                            <div class="stat-value">67</div>
+                            <div class="stat-label">Answers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-value">142</div>
+                            <div class="stat-label">Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏷️</div>
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Tags</div>
+                        </div>
+                    </div>
 
-            <div class="actions-card">
-                <div class="actions-header">
-                    <h3>🗄️ Database Management</h3>
-                    <p>Control your database with these operations</p>
-                </div>
-                <div class="button-group">
-                    <button class="btn btn-success" onclick="alert('Database seeded!')">🌱 Seed Database</button>
-                    <button class="btn btn-danger" onclick="if(confirm('WARNING: This will delete ALL data! Continue?')) alert('Database cleared!')">🗑️ Clear Database</button>
-                </div>
-                <p class="warning">⚠️ Seeding will add sample data. Clearing will delete ALL data.</p>
-            </div>
-
-            <div class="chart-section">
-                <h3>📊 Questions by User</h3>
-                <div class="chart-placeholder">
-                    <i class="fas fa-chart-bar"></i> Chart will appear here
-                </div>
-            </div>
-
-            <div class="manage-section">
-                <div class="section-header">
-                    <h3>📋 Manage Questions</h3>
-                    <div class="search-box">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" placeholder="Search questions..." class="search-input" id="adminSearch">
+                    <div class="chart-section">
+                        <div class="chart-header">
+                            <h3>📊 Daily Activity</h3>
+                            <div class="chart-tabs">
+                                <button class="chart-tab-btn active" onclick="switchChartTab(this, 'questions')">📝 Questions</button>
+                                <button class="chart-tab-btn" onclick="switchChartTab(this, 'users')">👥 Users</button>
+                            </div>
+                        </div>
+                        <div class="chart-filters">
+                            <button class="filter-btn active" onclick="switchFilter(this)">Daily</button>
+                            <button class="filter-btn" onclick="switchFilter(this)">Weekly</button>
+                            <button class="filter-btn" onclick="switchFilter(this)">Monthly</button>
+                            <button class="filter-btn" onclick="switchFilter(this)">Yearly</button>
+                        </div>
+                        <div class="chart-info">
+                            <span class="chart-total">Total Questions: <strong>12</strong></span>
+                            <span class="chart-period">Last 7 days</span>
+                        </div>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar"></i> Chart will appear here
+                        </div>
                     </div>
                 </div>
 
-                <div class="questions-table-wrapper">
-                    <table class="admin-table">
-                        <thead>
-                            <tr><th>Title</th><th>Author</th><th>Created</th><th>Actions</th></tr>
-                        </thead>
-                        <tbody id="adminTableBody">
-                            <tr>
-                                <td data-label="Title"><a href="question-detail.html" class="question-link">How to use useState in React?</a></td>
-                                <td data-label="Author">John Doe</td>
-                                <td data-label="Created">Jan 15, 2024</td>
-                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Title"><a href="question-detail.html" class="question-link">What is middleware in Express?</a></td>
-                                <td data-label="Author">Jane Smith</td>
-                                <td data-label="Created">Jan 20, 2024</td>
-                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Title"><a href="question-detail.html" class="question-link">Angular vs React: Which one to choose?</a></td>
-                                <td data-label="Author">Mike Johnson</td>
-                                <td data-label="Created">Jan 25, 2024</td>
-                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Title"><a href="question-detail.html" class="question-link">How to connect MongoDB with Node.js?</a></td>
-                                <td data-label="Author">Sarah Wilson</td>
-                                <td data-label="Created">Feb 1, 2024</td>
-                                <td data-label="Actions"><button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-6">
+                    <div class="manage-section">
+                        <div class="tabs">
+                            <button class="tab-btn active" onclick="switchTab(this, 'questions')">📋 Questions <span class="tab-badge">24</span></button>
+                            <button class="tab-btn" onclick="switchTab(this, 'users')">👥 Users <span class="tab-badge">142</span></button>
+                        </div>
+
+                        <div class="search-box" id="searchBox">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" placeholder="Search questions..." class="search-input" id="adminSearch">
+                            <button class="clear-search" style="display:none">✕</button>
+                        </div>
+
+                        <div id="questionsTab">
+                            <div class="questions-table-wrapper">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminTableBody">
+                                        <tr>
+                                            <td data-label="#" class="row-number">1</td>
+                                            <td data-label="Title"><a href="question-detail.html" class="question-link">How to use useState in React?</a></td>
+                                            <td data-label="Author"><span class="author-badge">John Doe</span></td>
+                                            <td data-label="Created" class="date-cell">Jan 15, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="hide-btn">Hide</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="#" class="row-number">2</td>
+                                            <td data-label="Title"><a href="question-detail.html" class="question-link">What is middleware in Express?</a></td>
+                                            <td data-label="Author"><span class="author-badge">Jane Smith</span></td>
+                                            <td data-label="Created" class="date-cell">Jan 20, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="hide-btn">Hide</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="#" class="row-number">3</td>
+                                            <td data-label="Title"><a href="question-detail.html" class="question-link">Angular vs React: Which one to choose?</a></td>
+                                            <td data-label="Author"><span class="author-badge">Mike Johnson</span></td>
+                                            <td data-label="Created" class="date-cell">Jan 25, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="hide-btn">Hide</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="#" class="row-number">4</td>
+                                            <td data-label="Title"><a href="question-detail.html" class="question-link">How to connect MongoDB with Node.js?</a></td>
+                                            <td data-label="Author"><span class="author-badge">Sarah Wilson</span></td>
+                                            <td data-label="Created" class="date-cell">Feb 1, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="hide-btn">Hide</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this question?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="usersTab" style="display:none">
+                            <div class="questions-table-wrapper">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Joined</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-label="#" class="row-number">1</td>
+                                            <td data-label="Name"><span class="author-badge">Admin User</span></td>
+                                            <td data-label="Email" class="email-cell">admin@test.com</td>
+                                            <td data-label="Role"><span class="role-badge admin-role">admin</span></td>
+                                            <td data-label="Joined" class="date-cell">Jan 1, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="edit-btn">Edit</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this user?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="#" class="row-number">2</td>
+                                            <td data-label="Name"><span class="author-badge">John Doe</span></td>
+                                            <td data-label="Email" class="email-cell">john@test.com</td>
+                                            <td data-label="Role"><span class="role-badge">user</span></td>
+                                            <td data-label="Joined" class="date-cell">Jan 15, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="edit-btn">Edit</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this user?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="#" class="row-number">3</td>
+                                            <td data-label="Name"><span class="author-badge">Jane Smith</span></td>
+                                            <td data-label="Email" class="email-cell">jane@test.com</td>
+                                            <td data-label="Role"><span class="role-badge">user</span></td>
+                                            <td data-label="Joined" class="date-cell">Jan 20, 2024</td>
+                                            <td data-label="Actions">
+                                                <div class="action-buttons">
+                                                    <button class="edit-btn">Edit</button>
+                                                    <button class="delete-btn" onclick="if(confirm('Delete this user?')) this.closest('tr').remove()">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="database-actions">
+                <div class="database-header">
+                    <h3>🗄️ Database Management</h3>
+                    <p>Seed or clear the database with sample data.</p>
+                </div>
+                <div class="database-buttons">
+                    <button class="btn btn-success" onclick="alert('Database seeded!')">🌱 Seed Database</button>
+                    <button class="btn btn-danger" onclick="if(confirm('⚠️ WARNING: This will delete ALL data. Continue?')) alert('Database cleared!')">🗑️ Clear Database</button>
+                </div>
+                <div class="warning">⚠️ These actions will modify the database.</div>
             </div>
         </div>
     </div>
@@ -142,5 +257,42 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function switchTab(el, tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            
+            document.getElementById('questionsTab').style.display = tab === 'questions' ? 'block' : 'none';
+            document.getElementById('usersTab').style.display = tab === 'users' ? 'block' : 'none';
+            document.getElementById('searchBox').style.display = tab === 'questions' ? 'block' : 'none';
+        }
+
+        function switchChartTab(el, type) {
+            document.querySelectorAll('.chart-tab-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            
+            const totalLabel = document.querySelector('.chart-total strong');
+            const periodLabel = document.querySelector('.chart-period');
+            if (type === 'questions') {
+                totalLabel.textContent = '12';
+                periodLabel.textContent = 'Last 7 days';
+            } else {
+                totalLabel.textContent = '8';
+                periodLabel.textContent = 'Last 7 days';
+            }
+        }
+
+        function switchFilter(el) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            
+            const period = el.textContent;
+            const periodLabel = document.querySelector('.chart-period');
+            if (period === 'Daily') periodLabel.textContent = 'Last 7 days';
+            else if (period === 'Weekly') periodLabel.textContent = 'Last 4 weeks';
+            else if (period === 'Monthly') periodLabel.textContent = 'Last 6 months';
+            else if (period === 'Yearly') periodLabel.textContent = 'Last 2 years';
+        }
+    </script>
 </body>
 </html>

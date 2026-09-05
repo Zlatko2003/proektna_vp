@@ -66,3 +66,28 @@ exports.getMe = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.updateProfile = async (req, res) => {
+    try {
+        const { name, email, bio, location } = req.body;
+        const user = await User.findById(req.user.id);
+        
+        if (name) user.name = name;
+        if (email) user.email = email;
+        if (bio !== undefined) user.bio = bio;
+        if (location !== undefined) user.location = location;
+        
+        await user.save();
+        res.json({ 
+            id: user._id, 
+            name: user.name, 
+            email: user.email, 
+            role: user.role,
+            bio: user.bio,
+            location: user.location,
+            createdAt: user.createdAt
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
