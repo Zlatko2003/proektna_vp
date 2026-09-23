@@ -380,7 +380,7 @@ export class RegisterComponent implements OnDestroy {
             this.authService.register(name, email, password).subscribe({
                 next: () => {
                     this.isLoading = false;
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/verify-email'], { queryParams: { email } });
                 },
                 error: () => {
                     this.isLoading = false;

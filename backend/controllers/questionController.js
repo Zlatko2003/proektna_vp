@@ -21,9 +21,18 @@ exports.getAllQuestions = async (req, res) => {
             .skip((page - 1) * limit);
         
         const total = await Question.countDocuments(query);
-        
+
+        const questionsWithCounts = await Promise.all(
+            questions.map(async (q) => {
+                const answerCount = await Answer.countDocuments({ questionId: q._id });
+                const obj = q.toObject();
+                obj.answerCount = answerCount;
+                return obj;
+            })
+        );
+
         res.json({
-            questions,
+            questions: questionsWithCounts,
             totalPages: Math.ceil(total / limit),
             currentPage: page,
             total

@@ -54,7 +54,7 @@ import { environment } from '../../../environments/environment';
                             </div>
                         </div>
 
-                        <div class="chart-section" *ngIf="chartData.labels.length">
+                        <div class="chart-section">
                             <div class="chart-header">
                                 <h3>📊 Daily Activity</h3>
                                 <div class="chart-tabs">
@@ -229,15 +229,15 @@ import { environment } from '../../../environments/environment';
 
                 <div class="database-actions">
                     <div class="database-header">
-                        <h3>🗄️ Database Management</h3>
+                        <h3>Database Management</h3>
                         <p>Seed or clear the database with sample data.</p>
                     </div>
                     <div class="database-buttons">
                         <button class="btn btn-success" (click)="seedDatabase()" [disabled]="isSeeding">
-                            🌱 {{ isSeeding ? 'Seeding...' : 'Seed Database' }}
+                            {{ isSeeding ? 'Seeding...' : 'Seed Database' }}
                         </button>
                         <button class="btn btn-danger" (click)="clearDatabase()" [disabled]="isClearing">
-                            🗑️ {{ isClearing ? 'Clearing...' : 'Clear Database' }}
+                            {{ isClearing ? 'Clearing...' : 'Clear Database' }}
                         </button>
                     </div>
                     <div class="warning">⚠️ These actions will modify the database.</div>
@@ -1009,10 +1009,10 @@ export class AdminComponent implements OnInit {
                 this.questions = res.questions;
                 this.totalAnswers = this.questions.reduce((sum, q) => sum + ((q as any).answerCount || 0), 0);
                 const uniqueUsers = new Set(this.questions.map(q => q.authorId?._id).filter(id => id));
-                this.totalUsers = uniqueUsers.size;
+                // this.totalUsers = uniqueUsers.size;
                 const allTags = new Set(this.questions.flatMap(q => q.tags || []));
                 this.totalTags = allTags.size;
-                this.buildUsersList();
+                this.loadUsers();
                 this.updateChart();
                 this.loadingQuestions = false;
             },
@@ -1022,27 +1022,37 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    buildUsersList(): void {
-        const userMap = new Map<string, { name: string; questionCount: number; joinedAt: Date }>();
-        this.questions.forEach(q => {
-            if (q.authorId?._id) {
-                const existing = userMap.get(q.authorId._id);
-                if (existing) {
-                    existing.questionCount++;
-                } else {
-                    userMap.set(q.authorId._id, {
-                        name: q.authorId.name || 'Unknown',
-                        questionCount: 1,
-                        joinedAt: q.createdAt || new Date()
-                    });
-                }
+    loadUsers(): void {
+        this.loadingUsers = true;
+        this.authService.getAllUsers().subscribe({
+            next: (users) => {
+                this.usersList = users.map((u: any) => {
+                    const id = u._id || u.id;
+                    const questionCount = this.questions.filter((q: any) => {
+                        const authorId = q.authorId?._id || q.authorId?.id || q.authorId;
+                        return authorId && String(authorId) === String(id);
+                    }).length;
+
+                    return {
+                        id,
+                        name: u.name,
+                        email: u.email,
+                        role: u.role,
+                        reputation: u.reputation || 0,
+                        questionCount,
+                        joinedAt: u.createdAt
+                    };
+                });
+
+                this.totalUsers = this.usersList.length;
+                this.loadingUsers = false;
+                this.updateChart();
+            },
+            error: () => {
+                this.loadingUsers = false;
+                this.errorMessage = 'Failed to load users';
             }
         });
-        this.usersList = Array.from(userMap.entries()).map(([id, data]) => ({
-            id,
-            ...data
-        }));
-        this.totalUsers = this.usersList.length;
     }
 
     setChartType(type: 'questions' | 'users'): void {
@@ -1171,9 +1181,26 @@ export class AdminComponent implements OnInit {
             return a.localeCompare(b);
         });
 
+        let labels = sortedKeys;
+        let values = sortedKeys.map(key => dateMap.get(key) || 0);
+
+        if (labels.length === 0) {
+            const fallback = new Map<string, number>();
+            const source = this.chartType === 'questions' ? this.questions : this.usersList;
+            source.forEach((item: any) => {
+                const raw = this.chartType === 'questions' ? item.createdAt : item.joinedAt;
+                const date = new Date(raw);
+                const key = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                fallback.set(key, (fallback.get(key) || 0) + 1);
+            });
+            labels = Array.from(fallback.keys());
+            values = labels.map(k => fallback.get(k) || 0);
+            this.chartTotal = source.length;
+            this.chartPeriod = 'All time (no data in selected period)';
+        }
         this.chartData = {
-            labels: sortedKeys,
-            values: sortedKeys.map(key => dateMap.get(key) || 0)
+            labels,
+            values
         };
     }
 

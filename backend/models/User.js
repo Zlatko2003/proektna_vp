@@ -9,7 +9,10 @@ const userSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     bio: { type: String, default: '' },
     location: { type: String, default: '' },
-    reputation: { type: Number, default: 0 }
+    reputation: { type: Number, default: 0 },
+    isVerified: { type: Boolean, default: false },
+    verificationCode: { type: String },
+    verificationExpires: { type: Date }
 });
 
 userSchema.pre('save', async function(next) {

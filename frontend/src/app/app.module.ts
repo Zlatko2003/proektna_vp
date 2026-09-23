@@ -15,6 +15,7 @@ import { ChartComponent } from './components/chart/chart.component';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { QuestionDetailComponent } from './pages/question-detail/question-detail.component';
 import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
@@ -28,13 +29,7 @@ import { FilterByTagPipe } from './pipes/filter-by-tag.pipe';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-
-providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-]
 
 @NgModule({
     declarations: [
@@ -48,6 +43,7 @@ providers: [
         ChartComponent,
         LoginComponent,
         RegisterComponent,
+        VerifyEmailComponent,
         QuestionsComponent,
         QuestionDetailComponent,
         AskQuestionComponent,
@@ -67,7 +63,8 @@ providers: [
         HttpClientModule
     ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })

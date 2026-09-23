@@ -1,5 +1,6 @@
 const Answer = require('../models/Answer');
 const Question = require('../models/Question');
+const User = require('../models/User');
 
 exports.createAnswer = async (req, res) => {
     try {
@@ -78,8 +79,10 @@ exports.voteAnswer = async (req, res) => {
         
         if (vote === 'up') {
             answer.votes += 1;
+            await User.findByIdAndUpdate(answer.authorId, { $inc: { reputation: 10 } });
         } else if (vote === 'down') {
             answer.votes -= 1;
+            await User.findByIdAndUpdate(answer.authorId, { $inc: { reputation: -2 } });
         }
         
         await answer.save();
@@ -110,6 +113,7 @@ exports.acceptAnswer = async (req, res) => {
         );
         
         answer.isAccepted = true;
+        await User.findByIdAndUpdate(answer.authorId, { $inc: { reputation: 15 } });
         await answer.save();
         
         res.json({ isAccepted: true });

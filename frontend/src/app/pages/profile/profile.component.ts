@@ -770,9 +770,11 @@ export class ProfileComponent implements OnInit {
         this.loadingQuestions = true;
         this.questionService.getAllQuestions(1, '', '').subscribe({
             next: (res) => {
-                this.userQuestions = res.questions.filter(
-                    (q: any) => q.authorId?._id === this.user?.id
-                );
+                this.userQuestions = res.questions.filter((q: any) => {
+                    const authorId = q.authorId?._id || q.authorId?.id;
+                    const myId = this.user?.id;
+                    return authorId && myId && String(authorId) === String(myId);
+                });
                 this.calculateStats();
                 this.loadingQuestions = false;
             },

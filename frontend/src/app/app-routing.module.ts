@@ -8,6 +8,7 @@ import { QuestionDetailComponent } from './pages/question-detail/question-detail
 import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -16,12 +17,13 @@ const routes: Routes = [
     { path: '', redirectTo: '/questions', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'verify-email', component: VerifyEmailComponent },
     { path: 'questions', component: QuestionsComponent },
     { path: 'questions/:id', component: QuestionDetailComponent },
     { path: 'ask', component: AskQuestionComponent, canActivate: [AuthGuard] },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
-    { path: '**', redirectTo: '/questions' }
+    { path: '**', redirectTo: '/questions' },
 ];
 
 @NgModule({

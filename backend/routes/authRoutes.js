@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const authController = require('../controllers/authController');
-const { authMiddleware } = require('../middleware/authMiddleware');
+const { authMiddleware, adminMiddleware } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -74,6 +74,8 @@ const { authMiddleware } = require('../middleware/authMiddleware');
  *         description: Server error
  */
 router.post('/register', authController.register);
+router.post('/verify', authController.verifyEmail);
+router.post('/resend-code', authController.resendCode);
 
 /**
  * @swagger
@@ -134,5 +136,7 @@ router.post('/login', authController.login);
 router.get('/me', authMiddleware, authController.getMe);
 
 router.put('/profile', authMiddleware, authController.updateProfile);
+
+router.get('/users', authMiddleware, adminMiddleware, authController.getAllUsers);
 
 module.exports = router;

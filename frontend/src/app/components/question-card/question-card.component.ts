@@ -179,6 +179,6 @@ export class QuestionCardComponent {
     @Input() question!: Question;
 
     get answerCount(): number {
-        return 0;
+        return (this.question as any).answerCount || 0;
     }
 }
