@@ -44,8 +44,10 @@ import { Question } from '../../models/question.model';
             margin-bottom: 16px;
             display: flex;
             gap: 20px;
-            transition: all 0.2s ease;
+            transition: all .2s ease;
+            min-height: 168px;
             border: 1px solid transparent;
+            align-items: center;
         }
         
         .question-card:hover {

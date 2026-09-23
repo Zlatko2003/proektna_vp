@@ -20,34 +20,62 @@ import { Answer } from '../../models/answer.model';
                 <div class="two-column-layout">
                     <div class="main-content">
                         <div class="question-card">
-                            <div class="question-badge">
-                                📌 Question
-                            </div>
-                            <h1>{{ question.title }}</h1>
-                            
-                            <div class="question-meta-info">
-                                <div class="meta-item">
-                                    <span class="meta-icon">👤</span>
-                                    Asked by <strong>{{ question.authorId.name }}</strong>
+                            <div class="question-top">
+                                <div class="question-badge">
+                                    📌 Question
                                 </div>
-                                <div class="meta-item">
-                                    <span class="meta-icon">📅</span>
-                                    {{ question.createdAt | date:'MMMM d, yyyy' }}
-                                </div>
-                                <div class="meta-item">
-                                    <span class="meta-icon">👁️</span>
-                                    {{ question.views }} views
+                                <div class="owner-actions" *ngIf="isAuthor">
+                                    <button type="button" class="btn-edit" (click)="startEdit()" *ngIf="!isEditing">✏️ Edit</button>
+                                    <button type="button" class="btn-delete" (click)="deleteMyQuestion()" *ngIf="!isEditing">🗑️ Delete</button>
                                 </div>
                             </div>
-                            
-                            <div class="question-content">
-                                {{ question.content }}
+
+                            <div *ngIf="!isEditing">
+                                <h1>{{ question.title }}</h1>
+                                
+                                <div class="question-meta-info">
+                                    <div class="meta-item">
+                                        <span class="meta-icon">👤</span>
+                                        Asked by <strong>{{ question.authorId.name }}</strong>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-icon">📅</span>
+                                        {{ question.createdAt | date:'MMMM d, yyyy' }}
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-icon">👁️</span>
+                                        {{ question.views }} views
+                                    </div>
+                                </div>
+                                
+                                <div class="question-content">
+                                    {{ question.content }}
+                                </div>
+                                
+                                <div class="tags-section">
+                                    <span class="tag" *ngFor="let tag of question.tags">
+                                        #{{ tag }}
+                                    </span>
+                                </div>
                             </div>
-                            
-                            <div class="tags-section">
-                                <span class="tag" *ngFor="let tag of question.tags">
-                                    #{{ tag }}
-                                </span>
+
+                            <div *ngIf="isEditing" class="edit-box">
+                                <label>Title</label>
+                                <input type="text" [(ngModel)]="editTitle" class="edit-input" />
+
+                                <label>Content</label>
+                                <textarea [(ngModel)]="editContent" rows="6" class="edit-textarea"></textarea>
+
+                                <label>Tags (comma separated)</label>
+                                <input type="text" [(ngModel)]="editTags" class="edit-input" placeholder="react, nodejs, mongodb" />
+
+                                <div class="edit-actions">
+                                    <button type="button" class="btn-save" (click)="saveEdit()" [disabled]="isSaving">
+                                        {{ isSaving ? 'Saving...' : '💾 Save' }}
+                                    </button>
+                                    <button type="button" class="btn-cancel" (click)="cancelEdit()" [disabled]="isSaving">Cancel</button>
+                                </div>
+                                <p class="edit-error" *ngIf="editError">{{ editError }}</p>
                             </div>
                         </div>
                         
@@ -197,18 +225,94 @@ import { Answer } from '../../models/answer.model';
                 margin-bottom: 32px;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             }
+
+            .question-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-bottom: 12px;
+            }
             
             .question-badge {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
                 padding: 6px 14px;
-                margin-bottom: 20px;
                 background: rgba(99,102,241,.08);
                 border-radius: 999px;
                 color: var(--primary);
                 font-size: 13px;
                 font-weight: 600;
+            }
+
+            .owner-actions {
+                display: flex;
+                gap: 8px;
+            }
+
+            .btn-edit, .btn-delete, .btn-save, .btn-cancel {
+                border: none;
+                border-radius: 999px;
+                padding: 8px 14px;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .btn-edit {
+                background: #eef2ff;
+                color: #4338ca;
+            }
+
+            .btn-delete {
+                background: #fef2f2;
+                color: #dc2626;
+            }
+
+            .btn-save {
+                background: var(--primary);
+                color: white;
+            }
+
+            .btn-cancel {
+                background: #f1f5f9;
+                color: #64748b;
+            }
+
+            .edit-box label {
+                display: block;
+                font-size: 13px;
+                font-weight: 600;
+                margin: 12px 0 6px;
+                color: var(--dark);
+            }
+
+            .edit-input, .edit-textarea {
+                width: 100%;
+                padding: 12px 14px;
+                border: 2px solid var(--gray-lighter);
+                border-radius: 14px;
+                font-family: inherit;
+                font-size: 14px;
+            }
+
+            .edit-input:focus, .edit-textarea:focus {
+                outline: none;
+                border-color: var(--primary);
+            }
+
+            .edit-actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 16px;
+            }
+
+            .edit-error {
+                color: #dc2626;
+                font-size: 13px;
+                margin-top: 10px;
             }
             
             .question-card h1 {
@@ -601,6 +705,13 @@ export class QuestionDetailComponent implements OnInit {
     currentUserId: string | null = null;
     sortByVotes = true;
 
+    isEditing = false;
+    isSaving = false;
+    editTitle = '';
+    editContent = '';
+    editTags = '';
+    editError: string | null = null;
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -624,7 +735,10 @@ export class QuestionDetailComponent implements OnInit {
 
     checkIfAuthor(): void {
         if (this.question && this.currentUserId) {
-            this.isAuthor = this.question.authorId?._id === this.currentUserId;
+            const authorId = (this.question.authorId as any)?._id || (this.question.authorId as any)?.id;
+            this.isAuthor = !!(authorId && String(authorId) === String(this.currentUserId));
+        } else {
+            this.isAuthor = false;
         }
     }
 
@@ -650,6 +764,68 @@ export class QuestionDetailComponent implements OnInit {
                 this.checkIfAuthor();
             },
             error: (err) => console.error(err)
+        });
+    }
+
+    startEdit(): void {
+        if (!this.question) return;
+        this.isEditing = true;
+        this.editError = null;
+        this.editTitle = this.question.title;
+        this.editContent = this.question.content;
+        this.editTags = (this.question.tags || []).join(', ');
+    }
+
+    cancelEdit(): void {
+        this.isEditing = false;
+        this.editError = null;
+    }
+
+    saveEdit(): void {
+        if (!this.question) return;
+        if (!this.editTitle.trim() || !this.editContent.trim()) {
+            this.editError = 'Title and content are required';
+            return;
+        }
+
+        this.isSaving = true;
+        this.editError = null;
+        const tags = this.editTags
+            .split(',')
+            .map(t => t.trim())
+            .filter(Boolean);
+
+        this.questionService.updateQuestion(this.question._id, {
+            title: this.editTitle.trim(),
+            content: this.editContent.trim(),
+            tags
+        }).subscribe({
+            next: (updated) => {
+                this.question = { ...this.question!, ...updated } as Question;
+                if (!(this.question as any).authorId && updated) {
+                    this.loadQuestion(this.question._id);
+                } else {
+                    this.checkIfAuthor();
+                }
+                this.isEditing = false;
+                this.isSaving = false;
+            },
+            error: (err) => {
+                this.editError = err?.error?.error || err?.message || 'Failed to update question';
+                this.isSaving = false;
+            }
+        });
+    }
+
+    deleteMyQuestion(): void {
+        if (!this.question) return;
+        if (!confirm('Delete this question? This cannot be undone.')) return;
+
+        this.questionService.deleteQuestion(this.question._id).subscribe({
+            next: () => this.router.navigate(['/questions']),
+            error: (err) => {
+                alert(err?.error?.error || 'Failed to delete question');
+            }
         });
     }
 

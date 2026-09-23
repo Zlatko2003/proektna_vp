@@ -752,6 +752,10 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.authService.getMe().subscribe({
+            error: () => {}
+        });
+
         this.authService.user$.subscribe(user => {
             this.user = user;
             if (user) {
@@ -759,8 +763,8 @@ export class ProfileComponent implements OnInit {
                 this.editForm.patchValue({
                     name: user.name,
                     email: user.email,
-                    bio: user?.bio || '',
-                    location: user?.location || ''
+                    bio: user.bio || '',
+                    location: user.location || ''
                 });
             }
         });
@@ -809,8 +813,7 @@ export class ProfileComponent implements OnInit {
         this.successMessage = null;
 
         this.authService.updateProfile(this.editForm.value).subscribe({
-            next: (updatedUser) => {
-                this.user = updatedUser;
+            next: () => {
                 this.successMessage = 'Profile updated successfully!';
                 this.isEditing = false;
                 this.isSaving = false;
